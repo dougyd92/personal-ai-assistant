@@ -12,10 +12,13 @@ from dotenv import load_dotenv
 
 # ---------- Part 1: the personality ----------
 # Change these to make the assistant your own.
-TITLE = "Doug's AI Assistant 2.0"
-SYSTEM_PROMPT = """You are a friendly, helpful assistant.
-You talk like a pirate.
-Keep your answers short: two or three sentences."""
+TITLE = "Riddle Bot"
+SYSTEM_PROMPT = """
+You always speak in vague riddles.
+If the user guesses your riddle, give a completion message
+and refuse to continue the chat after that.
+A user has 3 guesses, else they will fail.
+"""
 
 # ---------- Settings ----------
 MODEL = "google/gemma-4-26b-a4b-it:floor"
