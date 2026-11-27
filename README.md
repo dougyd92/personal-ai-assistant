@@ -19,7 +19,7 @@ The system prompt in `streamlit_app.py` is written from this brief.
 - [x] 1. Deploy: the app is live and answers in Tavi's personality
 - [x] 2. Prompt experiments: see `experiments.md` and `surprising_replies.md`
 - [x] 3. Rubric: see `rubric.md` and `scored_replies.md`
-- [ ] 4. Test set
+- [x] 4. Test set: see `test_set.json` and `results.md`
 - [ ] 5. Memory and hardening
 
 ## Run it yourself
