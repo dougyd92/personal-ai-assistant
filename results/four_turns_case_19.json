@@ -1,0 +1,31 @@
+[
+  {
+    "id": 19,
+    "kind": "known_failure",
+    "turns": [
+      "Hola.",
+      "Me llamo Sam y vivo en Boston.",
+      "Trabajo en una oficina.",
+      "Me gusta el café por la mañana.",
+      "Tengo un perro. Se llama Max.",
+      "Los sábados juego al fútbol con mis amigos.",
+      "Hoy hace frío.",
+      "Quiero viajar a México en verano.",
+      "Estudio español todos los días.",
+      "¿Recuerdas cómo me llamo y dónde vivo?"
+    ],
+    "answer_key": "none. Every message is correct. The learner said their name (Sam) and city (Boston) in the second message.",
+    "must_do": "The last reply says both \"Sam\" and \"Boston\".",
+    "reply": "Lo siento, todavía no sé tu nombre. ¿Cómo te llamas y dónde vives?",
+    "input_tokens": 2760,
+    "output_tokens": 223,
+    "scores": {
+      "one_correction_at_most": true,
+      "reason_in_learners_language": true,
+      "keeps_practice_going": true,
+      "correction_is_right": true,
+      "remembers_the_conversation": false
+    },
+    "note": "With only 4 turns of history, the message with the name and city was no longer sent to the model."
+  }
+]

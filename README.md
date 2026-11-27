@@ -20,7 +20,7 @@ The system prompt in `streamlit_app.py` is written from this brief.
 - [x] 2. Prompt experiments: see `experiments.md` and `surprising_replies.md`
 - [x] 3. Rubric: see `rubric.md` and `scored_replies.md`
 - [x] 4. Test set: see `test_set.json` and `results.md`
-- [ ] 5. Memory and hardening
+- [x] 5. Memory and hardening: see `assistant.py` and the before-and-after table in `results.md`
 
 ## Run it yourself
 

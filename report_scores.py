@@ -36,3 +36,10 @@ failing = [r for r in results if not all(r["scores"].values())]
 percent = round(100 * len(passing) / total)
 print(f"\nPass rate: {len(passing)} of {total} replies pass every criterion ({percent}%)")
 print("Failed cases:", ", ".join(str(r["id"]) for r in failing) or "none")
+
+# Runs made since Milestone 5 also record how many tokens each case used.
+if "input_tokens" in results[0]:
+    print("\nTokens used by each case:")
+    for result in results:
+        tokens = result["input_tokens"] + result["output_tokens"]
+        print(f"  case {result['id']}: {tokens:,} ({result['input_tokens']:,} in, {result['output_tokens']:,} out)")

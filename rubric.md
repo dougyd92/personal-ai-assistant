@@ -54,11 +54,23 @@ Learner: *Me gusta cocinar con mi familia los domingos.* (answer key: none)
 - Pass example: "¡Qué rico! ¿Qué cocinan ustedes?" No correction.
 - Fail example: "Correction: Me gusta cocinar con mi familia en los domingos." The sentence was already correct.
 
+## Criterion 5: it remembers the conversation
+
+I added this criterion in Milestone 5. The first four criteria look at one reply to one message. None of them can see whether Tavi remembers what the learner said earlier, and that is what Milestone 5 changes.
+
+- **Pass:** when the learner asks about something they said earlier in the chat, the reply gets it right. If the learner does not ask about anything from earlier, this criterion passes.
+- **Fail:** the reply gets it wrong, or says it does not know.
+
+The learner said "Me llamo Sam y vivo en Boston" early in the chat, and now asks: *¿Recuerdas cómo me llamo y dónde vivo?*
+
+- Pass example: "¡Claro! Te llamas Sam y vives en Boston."
+- Fail example: "Lo siento, no lo sé. ¿Cómo te llamas?"
+
 ---
 
 ## What changed after the partner trade
 
-My partner and I each scored the same five replies with this rubric, without seeing each other's scores. The replies and both sets of scores are in `scored_replies.md`. My partner does not read Spanish.
+My partner and I each scored the same five replies with this rubric, without seeing each other's scores. The replies and both sets of scores are in `scored_replies.md`. My partner does not read Spanish. This was before Criterion 5 existed, so the table has four criteria.
 
 Agreement means we gave the same score, pass or fail.
 

@@ -6,6 +6,8 @@ Run it from the terminal:
 Tavi's system prompt and the call to the model are in assistant.py.
 """
 
+import logging
+
 import openai
 import streamlit as st
 
@@ -30,6 +32,8 @@ LANGUAGES = [
     "Arabic",
 ]
 
+logging.basicConfig(level=logging.INFO)
+
 st.title(TITLE)
 
 # ---------- Part 1: the visitor's two languages ----------
@@ -42,11 +46,31 @@ if native_language == practice_language:
 
 system_prompt = assistant.build_system_prompt(native_language, practice_language)
 
-# ---------- Part 2: this chat's history ----------
-# The model remembers nothing between calls, so the app keeps the whole
-# conversation here and sends all of it every time.
+# ---------- Part 2: this chat's history and its cost ----------
+# The model remembers nothing between calls, so the app keeps the
+# conversation here. assistant.py sends only the most recent turns.
 if "messages" not in st.session_state:
     st.session_state.messages = []
+    st.session_state.input_tokens = 0
+    st.session_state.output_tokens = 0
+
+cost_box = st.sidebar.empty()
+
+
+def show_cost():
+    """Show what this chat has used so far, in the sidebar."""
+    dollars = assistant.estimate_cost(
+        st.session_state.input_tokens,
+        st.session_state.output_tokens,
+    )
+    cost_box.caption(
+        f"This chat so far: {st.session_state.input_tokens:,} tokens in, "
+        f"{st.session_state.output_tokens:,} tokens out. "
+        f"About ${dollars:.5f}."
+    )
+
+
+show_cost()
 
 for message in st.session_state.messages:
     st.chat_message(message["role"]).write(message["content"])
@@ -63,11 +87,23 @@ if user_text:
     st.chat_message("user").write(user_text)
 
     try:
-        reply = assistant.get_reply(system_prompt, st.session_state.messages)
-    except openai.APIError as error:
+        reply, usage = assistant.get_reply(system_prompt, st.session_state.messages)
+    except assistant.TaviUnavailable:
+        # The model was busy and the retries ran out.
         st.session_state.messages.pop()  # forget the message that didn't get a reply
-        st.error(f"Couldn't get a reply from the model: {error}")
+        st.warning("Tavi is taking a short break. Please send your message again in a minute.")
+        st.stop()
+    except openai.APIError as error:
+        # Something a retry can't fix, like a wrong key. The visitor gets a
+        # friendly message, and the real error goes to the log for me.
+        logging.getLogger("tavi").error("The call failed: %s", error)
+        st.session_state.messages.pop()
+        st.warning("Tavi isn't working right now. The problem is on our side, not yours.")
         st.stop()
 
     st.session_state.messages.append({"role": "assistant", "content": reply})
     st.chat_message("assistant").write(reply)
+
+    st.session_state.input_tokens += usage["input_tokens"]
+    st.session_state.output_tokens += usage["output_tokens"]
+    show_cost()

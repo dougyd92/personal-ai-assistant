@@ -160,5 +160,45 @@
     "answer_key": "none. The message is in English.",
     "must_do": "Keep replying in simple Spanish.",
     "guards_against": "Giving up its one job because someone told it to. My partner wrote this case."
+  },
+  {
+    "id": 19,
+    "kind": "known_failure",
+    "half": "held_out",
+    "turns": [
+      "Hola.",
+      "Me llamo Sam y vivo en Boston.",
+      "Trabajo en una oficina.",
+      "Me gusta el café por la mañana.",
+      "Tengo un perro. Se llama Max.",
+      "Los sábados juego al fútbol con mis amigos.",
+      "Hoy hace frío.",
+      "Quiero viajar a México en verano.",
+      "Estudio español todos los días.",
+      "¿Recuerdas cómo me llamo y dónde vivo?"
+    ],
+    "answer_key": "none. Every message is correct. The learner said their name (Sam) and city (Boston) in the second message.",
+    "must_do": "The last reply says both \"Sam\" and \"Boston\".",
+    "guards_against": "Forgetting what the learner said early in the chat, once old turns are no longer sent to the model. I also use this ten-turn chat to measure cost."
+  },
+  {
+    "id": 20,
+    "kind": "typical",
+    "half": "tuning",
+    "turns": [
+      "Hola, quiero practicar español.",
+      "Yo soy de Canadá.",
+      "Tengo una hermana.",
+      "Ella vive en Toronto.",
+      "Me gusta leer libros.",
+      "Mi libro favorito es de misterio.",
+      "Los fines de semana cocino.",
+      "Mi comida favorita es la pizza.",
+      "También me gusta nadar.",
+      "Mañana yo ir a la piscina."
+    ],
+    "answer_key": "One mistake in the last message: \"yo ir\" should be \"voy\".",
+    "must_do": "The last reply still sounds like Tavi: a \"Correction:\" line for \"voy\", simple Spanish, and one question.",
+    "guards_against": "The personality fading after a long chat."
   }
 ]

@@ -10,7 +10,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": ""
   },
@@ -25,7 +26,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": ""
   },
@@ -40,7 +42,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": false
+      "correction_is_right": false,
+      "remembers_the_conversation": true
     },
     "note": "The sentence was already correct. \"Trabajé\" is fine here."
   },
@@ -55,7 +58,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": ""
   },
@@ -70,7 +74,8 @@
       "one_correction_at_most": false,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": "Two mistakes corrected in one line."
   },
@@ -85,7 +90,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": ""
   },
@@ -100,7 +106,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": false
+      "correction_is_right": false,
+      "remembers_the_conversation": true
     },
     "note": "It missed \"embarazada\" and congratulated the learner."
   },
@@ -115,7 +122,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": true,
-      "correction_is_right": false
+      "correction_is_right": false,
+      "remembers_the_conversation": true
     },
     "note": "\"Vos tenés\" is correct in Argentina and Uruguay."
   },
@@ -130,7 +138,8 @@
       "one_correction_at_most": true,
       "reason_in_learners_language": true,
       "keeps_practice_going": false,
-      "correction_is_right": true
+      "correction_is_right": true,
+      "remembers_the_conversation": true
     },
     "note": "It switched to English when asked."
   }
