@@ -1,7 +1,7 @@
-"""Your personal AI assistant.
+"""Tavi, a language practice partner.
 
 Run it from the terminal:
-    streamlit run app.py
+    streamlit run streamlit_app.py
 """
 
 import os
@@ -11,14 +11,30 @@ import streamlit as st
 from dotenv import load_dotenv
 
 # ---------- Part 1: the personality ----------
-# Change these to make the assistant your own.
-TITLE = "Riddle Bot"
-SYSTEM_PROMPT = """
-You always speak in vague riddles.
-If the user guesses your riddle, give a completion message
-and refuse to continue the chat after that.
-A user has 3 guesses, else they will fail.
-"""
+TITLE = "Tavi, your language practice partner"
+
+# The words in {curly braces} are filled in with the visitor's two languages.
+SYSTEM_PROMPT = """You are Tavi, a patient language practice partner.
+The learner speaks {native_language} and is practicing {practice_language}.
+Your one job is to help them practice through short, friendly conversation.
+Reply in simple {practice_language}: two or three short sentences, then one question to keep the conversation going.
+If the learner makes a mistake, correct it kindly and explain it in {native_language}."""
+
+# The languages a visitor can pick. I have only tested English speakers
+# practicing Spanish. The others are here so you can try them.
+LANGUAGES = [
+    "English",
+    "Spanish",
+    "French",
+    "German",
+    "Portuguese",
+    "Italian",
+    "Japanese",
+    "Korean",
+    "Chinese",
+    "Hindi",
+    "Arabic",
+]
 
 # ---------- Settings ----------
 MODEL = "google/gemma-4-26b-a4b-it:floor"
@@ -35,7 +51,20 @@ client = openai.OpenAI(
 
 st.title(TITLE)
 
-# ---------- Part 2: this chat's history ----------
+# ---------- Part 2: the visitor's two languages ----------
+native_language = st.sidebar.selectbox("I speak", LANGUAGES, index=0)
+practice_language = st.sidebar.selectbox("I want to practice", LANGUAGES, index=1)
+
+if native_language == practice_language:
+    st.info("Pick two different languages in the sidebar to start.")
+    st.stop()
+
+system_prompt = SYSTEM_PROMPT.format(
+    native_language=native_language,
+    practice_language=practice_language,
+)
+
+# ---------- Part 3: this chat's history ----------
 # The model remembers nothing between calls, so the app keeps the whole
 # conversation here and sends all of it every time.
 if "messages" not in st.session_state:
@@ -46,11 +75,11 @@ for message in st.session_state.messages:
 
 messages_sent = len([m for m in st.session_state.messages if m["role"] == "user"])
 if messages_sent >= MAX_MESSAGES:
-    st.info("You've reached the message limit for this chat. Thanks for trying it out!")
+    st.info("You've reached the message limit for this chat. Thanks for practicing!")
     st.stop()
 
-# ---------- Part 3: the call ----------
-user_text = st.chat_input("Say something")
+# ---------- Part 4: the call ----------
+user_text = st.chat_input(f"Write something in {practice_language}")
 if user_text:
     st.session_state.messages.append({"role": "user", "content": user_text})
     st.chat_message("user").write(user_text)
@@ -59,7 +88,7 @@ if user_text:
         response = client.chat.completions.create(
             model=MODEL,
             # The personality goes first, then the conversation so far
-            messages=[{"role": "system", "content": SYSTEM_PROMPT}] + st.session_state.messages,
+            messages=[{"role": "system", "content": system_prompt}] + st.session_state.messages,
             max_tokens=MAX_REPLY_TOKENS,
         )
     except openai.APIError as error:

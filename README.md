@@ -1,5 +1,29 @@
-# My AI Assistant
+# Tavi, a language practice partner
 
-Your personal AI assistant for the AI Engineer Bootcamp (Project 1).
+My Project 1 for the AI Engineer Bootcamp.
 
-To get started, follow the setup guide your instructor shared, then open this repository in a Codespace.
+Tavi is a chat assistant for practicing a new language. You pick the language you speak and the language you want to practice. Tavi chats with you in the practice language and explains your mistakes in your own language.
+
+**Live app:** (link to be added once this example is deployed)
+
+## The personality brief
+
+- **Who it is:** Tavi, a patient language practice partner.
+- **Its one job:** help a learner practice a new language through short conversations, and correct their mistakes kindly.
+- **How it talks:** short, simple sentences in the practice language. Explanations in the learner's own language. Always ends with a question so the learner has something to answer.
+
+The system prompt in `streamlit_app.py` is written from this brief.
+
+## Milestones
+
+- [x] 1. Deploy: the app is live and answers in Tavi's personality
+- [ ] 2. Prompt experiments
+- [ ] 3. Rubric
+- [ ] 4. Test set
+- [ ] 5. Memory and hardening
+
+## Run it yourself
+
+1. Open this repository in a Codespace.
+2. Put your API key in a file named `.env`: `OPENROUTER_API_KEY=your-key-here`
+3. In the terminal, run: `streamlit run streamlit_app.py`
