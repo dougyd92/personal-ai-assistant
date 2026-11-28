@@ -118,6 +118,11 @@ def get_reply(system_prompt, messages):
     if response.usage:
         usage["input_tokens"] = response.usage.prompt_tokens
         usage["output_tokens"] = response.usage.completion_tokens
+
+    if response.choices[0].finish_reason == "length":
+        logger.warning("The model's reply was cut off because it was too long.")
+        reply += "\n\n(Note: The model's reply was cut off because it was too long.)"
+
     return reply, usage
 
 
